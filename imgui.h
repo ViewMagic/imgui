@@ -2069,10 +2069,12 @@ enum ImFontAtlasFlags_
 // - This is an old API and it is currently awkward for those and and various other reasons! We will address them in the future!
 struct ImFontAtlas
 {
+    IMGUI_API static const char* GetDefaultCompressedFontDataTTFBase85();
+
     IMGUI_API ImFontAtlas();
     IMGUI_API ~ImFontAtlas();
+    IMGUI_API ImFont*           AddFontDefault();
     IMGUI_API ImFont*           AddFont(const ImFontConfig* font_cfg);
-    IMGUI_API ImFont*           AddFontDefault(const ImFontConfig* font_cfg = NULL);
     IMGUI_API ImFont*           AddFontFromFileTTF(const char* filename, float size_pixels, const ImFontConfig* font_cfg = NULL, const ImWchar* glyph_ranges = NULL);
     IMGUI_API ImFont*           AddFontFromMemoryTTF(void* font_data, int font_size, float size_pixels, const ImFontConfig* font_cfg = NULL, const ImWchar* glyph_ranges = NULL); // Note: Transfer ownership of 'ttf_data' to ImFontAtlas! Will be deleted after destruction of the atlas. Set font_cfg->FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed.
     IMGUI_API ImFont*           AddFontFromMemoryCompressedTTF(const void* compressed_font_data, int compressed_font_size, float size_pixels, const ImFontConfig* font_cfg = NULL, const ImWchar* glyph_ranges = NULL); // 'compressed_font_data' still owned by caller. Compress with binary_to_compressed_c.cpp.
