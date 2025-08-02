@@ -3580,6 +3580,10 @@ enum ImFontAtlasFlags_
 // - This is an old API and it is currently awkward for those and various other reasons! We will address them in the future!
 struct ImFontAtlas
 {
+#ifndef IMGUI_DISABLE_DEFAULT_FONT
+    IMGUI_API static const char* GetDefaultCompressedFontDataTTF(int* out_size);
+#endif
+
     IMGUI_API ImFontAtlas();
     IMGUI_API ~ImFontAtlas();
     IMGUI_API ImFont*           AddFont(const ImFontConfig* font_cfg);
